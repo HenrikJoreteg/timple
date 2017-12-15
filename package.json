@@ -1,6 +1,6 @@
 {
   "name": "timple",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Henrik Joreteg <henrik@joreteg.com> (joreteg.com)",
   "devDependencies": {
     "prettier": "1.9.2",
