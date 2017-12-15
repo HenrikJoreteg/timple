@@ -1,0 +1,19 @@
+{
+  "name": "timple",
+  "version": "0.0.0",
+  "author": "Henrik Joreteg <henrik@joreteg.com> (joreteg.com)",
+  "devDependencies": {
+    "prettier": "1.9.2",
+    "tape": "4.8.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "lint": "prettier ./*.js --write",
+    "test": "node test"
+  }
+}
