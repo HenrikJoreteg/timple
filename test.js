@@ -1,5 +1,5 @@
 const test = require('tape')
-const template = require('./')
+const { populateTemplate } = require('./')
 
 test('inserts values according to type', t => {
   const cases = {
@@ -24,7 +24,11 @@ test('inserts values according to type', t => {
 
   for (let input in cases) {
     const output = cases[input]
-    t.equal(template(input, data), output, `${input} should become ${output}`)
+    t.equal(
+      populateTemplate(input, data),
+      output,
+      `${input} should become ${output}`
+    )
   }
   t.end()
 })

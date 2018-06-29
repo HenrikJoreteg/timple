@@ -59,15 +59,28 @@ npm install timple
 ## example
 
 ```javascript
-const timple = require('timple')
+const { populateTemplate } = require('timple')
 const template = require('fs').readFileSync('./sw.js')
 
 const templateData = {
   cdnUrl: 'https://assets.something.com'
 }
 
-const finalString = timple(template, templateData)
+const finalString = populateTemplate(template, templateData)
 ```
+
+## API reference
+
+Timple exports an object with the following methods:
+
+- `populateTemplate(templateString, variablesObject)`: returns string with template variables populated.
+- `getTemplateFunctionFromFile(templatePath)`: returns a ready-to-go template function that can be called with just the variables object.
+- `writeTemplatedFileSync(templateFilePath, outputFilePath, variablesObject)`: convenience function for build scripts and such. Just takes an input pathname, and output pathname, and writes the output to the outputFilePath with populated variables.
+
+## Changelog
+
+- `2.0.0`: now exporting several functions instead of just the template population function.
+- `1.0.0`: initial release
 
 ## credits
 

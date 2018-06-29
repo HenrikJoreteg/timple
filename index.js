@@ -1,3 +1,4 @@
+const fs = require('fs')
 const tripleRE = /\"?\'?\{\{\{ ?([A-Za-z0-9_-]+) ?\}\}\}\"?\'?/g
 const doubleRE = /(\"?\'?)\{\{ ?([A-Za-z0-9_-]+) ?\}\}(\"?\'?)/g
 
@@ -7,7 +8,7 @@ const ensureExists = (name, vars) => {
   }
 }
 
-module.exports = (inputString, vars) =>
+const populateTemplate = (inputString, vars) =>
   inputString
     .replace(tripleRE, (wholeMatch, name) => {
       ensureExists(name, vars)
@@ -22,3 +23,19 @@ module.exports = (inputString, vars) =>
       ensureExists(name, vars)
       return preQuote + vars[name] + postQuote
     })
+
+const getTemplateFunctionFromFile = filePath => {
+  const template = fs.readFileSync(filePath, 'utf8')
+  return vars => populateTemplate(template, vars)
+}
+
+const writeTemplatedFileSync = (templatePath, outputPath, vars) => {
+  const templateFn = getTemplateFunctionFromFile(templatePath)
+  fs.writeFileSync(outputPath, templateFn(vars), 'utf8')
+}
+
+module.exports = {
+  populateTemplate,
+  getTemplateFunctionFromFile,
+  writeTemplatedFileSync
+}
